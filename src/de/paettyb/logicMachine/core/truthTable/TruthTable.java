@@ -2,6 +2,7 @@ package de.paettyb.logicMachine.core.truthTable;
 
 import de.paettyb.logicMachine.core.Klausel;
 import de.paettyb.logicMachine.core.Literal;
+import de.paettyb.logicMachine.core.Operator;
 import de.paettyb.logicMachine.core.operators.And;
 import de.paettyb.logicMachine.core.operators.Not;
 import de.paettyb.logicMachine.core.operators.Or;
@@ -17,14 +18,21 @@ public class TruthTable {
     private boolean[] values;
     private boolean[][] allocations;
     
+    private HashMap<Integer, Operator> operatorIndices;
+    
     
     public TruthTable(Klausel klausel) {
+        this(klausel, klausel.getLiterals());
+    }
+    
+    public TruthTable(Klausel klausel, String[] literals){
         this.klausel = klausel;
-        this.literals = klausel.getLiterals();
+        this.literals = literals;
         length = (int) Math.pow(2, literals.length);
         values = new boolean[length];
         allocations = new boolean[length][literals.length];
         calculateValues();
+        operatorIndices = klausel.getOperatorIndices();
     }
     
     private void calculateValues() {
@@ -140,5 +148,9 @@ public class TruthTable {
     
     public boolean[][] getAllocations() {
         return allocations;
+    }
+    
+    public HashMap<Integer, Operator> getOperatorIndices() {
+        return operatorIndices;
     }
 }

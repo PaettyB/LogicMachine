@@ -1,5 +1,6 @@
 package de.paettyb.logicMachine;
 
+import de.paettyb.logicMachine.control.MouseManager;
 import de.paettyb.logicMachine.core.Klausel;
 import de.paettyb.logicMachine.core.Parser;
 import de.paettyb.logicMachine.display.Display;
@@ -34,13 +35,12 @@ public class Main {
     }
     
     private void init() {
-        display = new Display(name, width, height);
-        
-        //display.getFrame().addKeyListener(new KeyManager());
-        
-        String s = "NOT((A and B) or (C and A))";
+        String s = "NOT((A and B) or (C and not A))";
         Klausel k = Parser.parseString(s);
-    
+        
+        display = new Display(name, width, height);
+        //display.getFrame().addKeyListener(new KeyManager());
+        display.getCanvas().addMouseListener(new MouseManager(this));
         visualizer = new Visualizer(k);
     }
     
@@ -48,7 +48,7 @@ public class Main {
     
     }
     
-    private void render() {
+    public synchronized void render() {
         bs = display.getCanvas().getBufferStrategy();
         if (bs == null) {
             display.getCanvas().createBufferStrategy(3);
@@ -72,7 +72,7 @@ public class Main {
         run = new Thread("MainEngineThread") {
             public void run() {
                 
-                long lastTime = System.nanoTime();
+                /*long lastTime = System.nanoTime();
                 int fps = 5;
                 double timePerTick = 1000000000 / fps;
                 double delta = 0;
@@ -100,9 +100,27 @@ public class Main {
                 
                 stopGame();
                 System.exit(0);
+                
+                 */
+                
+                while(running){
+                    tick();
+                    render();
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                stopGame();
+                System.exit(0);
             }
+            
+            
         };
+        
         run.start();
+        
     }
     
     public synchronized void stopGame() {
@@ -122,6 +140,22 @@ public class Main {
     
     public int getHeight() {
         return height;
+    }
+    
+    public Display getDisplay() {
+        return display;
+    }
+    
+    public Graphics getGraphics() {
+        return g;
+    }
+    
+    public boolean isRunning() {
+        return running;
+    }
+    
+    public Visualizer getVisualizer() {
+        return visualizer;
     }
     
     public static void main(String[] args) {

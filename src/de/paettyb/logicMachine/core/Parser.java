@@ -2,11 +2,15 @@ package de.paettyb.logicMachine.core;
 
 import de.paettyb.logicMachine.core.operators.*;
 
+import java.util.LinkedList;
 import java.util.Locale;
 
 public class Parser {
     
     private static Klausel lastBinOp = null;
+    
+    public static LinkedList<Operator> operators = new LinkedList<>();
+    private static int currentOpId = 0;
     
     private static Klausel parseStringRekursive(String s) {
         s  =s.trim();
@@ -53,16 +57,23 @@ public class Parser {
             String arg2 = s.substring(currentoperatorIndex + opString.length() + 1, s.length() - 1);
             Klausel klausel1 = parseStringRekursive(arg1);
             Klausel klausel2 = parseStringRekursive(arg2);
+    
+            
+            
             
             BinOp binOp = (BinOp) operator;
-            if(klausel1 instanceof BinOp)
+            if(klausel1 instanceof BinOp) {
                 ((BinOp) klausel1).setParent(binOp);
-            if(klausel2 instanceof BinOp)
+            }
+            if(klausel2 instanceof BinOp) {
                 ((BinOp) klausel2).setParent(binOp);
+            }
             binOp.setK1(klausel1);
             binOp.setK2(klausel2);
-            return binOp;
             
+            
+            
+            return binOp;
         }
         s = s.replaceAll("\\(", "");
         s = s.replaceAll("\\)", "");

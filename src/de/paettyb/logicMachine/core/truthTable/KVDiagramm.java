@@ -145,5 +145,7 @@ public class KVDiagramm {
         System.out.println(s);
     }
     
-    
+    public void setValues(boolean[] values) {
+        this.values = values;
+    }
 }
