@@ -25,11 +25,13 @@ public class Visualizer {
     private Graphics2D g;
     
     public Visualizer(Klausel klausel) {
-        this.klausel = klausel;
-        truthTable = new TruthTable(klausel);
-        tableOrigin = new Point(truthTable.getNumLiterals() * 30 + PADDING, 50);
-        kvDiagramm = new KVDiagramm(klausel.getLiterals(), truthTable.getValues(), 50, new Point(Display.WIDTH - 400, 200));
-        values = truthTable.getValues();
+        if (klausel != null) {
+            this.klausel = klausel;
+            truthTable = new TruthTable(klausel);
+            tableOrigin = new Point(truthTable.getNumLiterals() * 30 + PADDING, 50);
+            kvDiagramm = new KVDiagramm(klausel.getLiterals(), truthTable.getValues(), 50, new Point(Display.WIDTH - 400, 200));
+            values = truthTable.getValues();
+        }
     }
     
     public void updateDisplay(Graphics2D g) {
@@ -60,12 +62,12 @@ public class Visualizer {
         //---HIGHLIGHT---
         g.setColor(Color.CYAN);
         
-        if(highlightedIndex >= 0) {
-            highlightedX = tableOrigin.x+PADDING+fm.stringWidth(str.substring(0, highlightedIndex));
-            g.fillRect(highlightedX, tableOrigin.y-PADDING - fm.getAscent(), fm.charWidth(str.charAt(highlightedIndex)), fm.getHeight());
+        if (highlightedIndex >= 0) {
+            highlightedX = tableOrigin.x + PADDING + fm.stringWidth(str.substring(0, highlightedIndex));
+            g.fillRect(highlightedX, tableOrigin.y - PADDING - fm.getAscent(), fm.charWidth(str.charAt(highlightedIndex)), fm.getHeight());
         }
         g.setColor(Color.black);
-        int valuesX = (highlightedIndex== -1) ? tableOrigin.x +PADDING : highlightedX;
+        int valuesX = (highlightedIndex == -1) ? tableOrigin.x + PADDING : highlightedX;
         for (int i = 0; i < values.length; i++) {
             
             g.drawString(values[i] ? "1" : "0", valuesX, fm.getAscent() + tableOrigin.y + i * fm.getHeight());
@@ -80,9 +82,20 @@ public class Visualizer {
         kvDiagramm.draw(g);
     }
     
+    public void recalculateValues(Klausel k) {
+        if (k != null) {
+            this.klausel = k;
+            truthTable = new TruthTable(klausel);
+            kvDiagramm = new KVDiagramm(klausel.getLiterals(), truthTable.getValues(), 50, new Point(Display.WIDTH - 400, 200));
+            tableOrigin = new Point(truthTable.getNumLiterals() * 30 + PADDING, 50);
+            values = truthTable.getValues();
+            highlightedIndex = -1;
+        }
+    }
+    
     public void clickEvent(MouseEvent e) {
         Point point = getOffsetToText(e.getPoint());
-        if(isInTextBounds(point)){
+        if (isInTextBounds(point)) {
             int index = getTextIndex(point);
             highlightIndex(index);
             kvDiagramm.setValues(values);
@@ -93,37 +106,37 @@ public class Visualizer {
         
     }
     
-    private void highlightIndex(int index){
+    private void highlightIndex(int index) {
         highlightedIndex = index;
-        if(index == -1){
+        if (index == -1) {
             values = truthTable.getValues();
             return;
         }
-        if(truthTable.getOperatorIndices().containsKey(index)) {
+        if (truthTable.getOperatorIndices().containsKey(index)) {
             TruthTable newTable = new TruthTable(truthTable.getOperatorIndices().get(index), klausel.getLiterals());
             values = newTable.getValues();
         } else {
             highlightedIndex = -1;
-            values  = truthTable.getValues();
+            values = truthTable.getValues();
             return;
         }
     }
     
     private Point getOffsetToText(Point mouse) {
         Point textOrigin = new Point(tableOrigin.x + PADDING, tableOrigin.y - PADDING);
-        return new Point(mouse.x-textOrigin.x, mouse.y-textOrigin.y);
+        return new Point(mouse.x - textOrigin.x, mouse.y - textOrigin.y);
     }
     
-    private boolean isInTextBounds(Point p){
+    private boolean isInTextBounds(Point p) {
         FontMetrics fontMetrics = g.getFontMetrics();
         return (p.x >= 0 && p.x < fontMetrics.stringWidth(klausel.toString()) && p.y <= 0 && p.y > -fontMetrics.getAscent());
     }
     
-    private int getTextIndex(Point p){
+    private int getTextIndex(Point p) {
         FontMetrics fontMetrics = g.getFontMetrics();
         String s = klausel.toString();
-        for(int i = 0; i < s.length(); i++){
-            if(p.x < fontMetrics.stringWidth(s.substring(0,i+1))){
+        for (int i = 0; i < s.length(); i++) {
+            if (p.x < fontMetrics.stringWidth(s.substring(0, i + 1))) {
                 return i;
             }
         }

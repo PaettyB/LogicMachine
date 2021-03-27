@@ -1,12 +1,12 @@
 package de.paettyb.logicMachine;
 
+import de.paettyb.logicMachine.control.KeyManager;
 import de.paettyb.logicMachine.control.MouseManager;
 import de.paettyb.logicMachine.core.Klausel;
 import de.paettyb.logicMachine.core.Parser;
 import de.paettyb.logicMachine.display.Display;
 import de.paettyb.logicMachine.display.Visualizer;
 
-import javax.net.ssl.KeyManager;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
@@ -35,13 +35,18 @@ public class Main {
     }
     
     private void init() {
-        String s = "NOT((A and B) or (C and not A))";
-        Klausel k = Parser.parseString(s);
-        
+        Klausel k = Parser.parseString("A");
         display = new Display(name, width, height);
-        //display.getFrame().addKeyListener(new KeyManager());
+        display.getTextField().addKeyListener(new KeyManager(this));
         display.getCanvas().addMouseListener(new MouseManager(this));
         visualizer = new Visualizer(k);
+    }
+    
+    public void recalculateValues(){
+        String s = display.getTextField().getText();
+        Klausel k = Parser.parseString(s);
+        visualizer.recalculateValues(k);
+        render();
     }
     
     private void tick() {
