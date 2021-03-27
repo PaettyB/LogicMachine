@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6acd6e2-d43d-47b0-8a2b-7b1dd34e5ca0" name="Default Changelist" comment="Added TextBox and Updating text">
-      <change beforePath="$PROJECT_DIR$/out/production/LogicMachine/de/paettyb/logicMachine/core/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LogicMachine/de/paettyb/logicMachine/core/Parser.class" afterDir="false" />
-    </list>
+    <list default="true" id="e6acd6e2-d43d-47b0-8a2b-7b1dd34e5ca0" name="Default Changelist" comment="Added TextBox and Updating text" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -151,6 +149,7 @@
       <workItem from="1616580934317" duration="6180000" />
       <workItem from="1616590570341" duration="179000" />
       <workItem from="1616838702185" duration="2186000" />
+      <workItem from="1616840915561" duration="321000" />
     </task>
     <task id="LOCAL-00001" summary="Added Selectable Operators with Updating TruthTable and KVDiagram">
       <created>1616590613852</created>
