@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6acd6e2-d43d-47b0-8a2b-7b1dd34e5ca0" name="Default Changelist" comment="Merged Branch">
+      <change afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/control/ScrollListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/control/KeyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/control/KeyManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/Klausel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/Klausel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/Literal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/Literal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Display.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Visualizer.java" afterDir="false" />
     </list>
@@ -136,6 +133,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -165,6 +173,7 @@
       <workItem from="1616840915561" duration="809000" />
       <workItem from="1616841741376" duration="119000" />
       <workItem from="1616921255240" duration="7092000" />
+      <workItem from="1617198103579" duration="5022000" />
     </task>
     <task id="LOCAL-00001" summary="Added Selectable Operators with Updating TruthTable and KVDiagram">
       <created>1616590613852</created>

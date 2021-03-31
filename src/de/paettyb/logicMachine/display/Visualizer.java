@@ -30,13 +30,13 @@ public class Visualizer {
             this.klausel = klausel;
             truthTable = new TruthTable(klausel);
             tableOrigin = new Point(truthTable.getNumLiterals() * 30 + PADDING, 50);
-            kvDiagramm = new KVDiagramm(klausel.getLiterals(), truthTable.getValues(), 50, new Point(Display.WIDTH - 400, 50));
+            kvDiagramm = new KVDiagramm(klausel.getLiterals(), truthTable.getValues(), 50, new Point(0,0));
             values = truthTable.getValues();
             
         }
     }
     
-    public void updateDisplay(Graphics2D g) {
+    public void updateTable(Graphics2D g) {
         this.g = g;
         
         String str = klausel.toString();
@@ -85,6 +85,11 @@ public class Visualizer {
         g.drawLine(tableOrigin.x, 0, tableOrigin.x, Display.HEIGHT);
         g.drawLine(0, tableOrigin.y, Display.WIDTH - 500, tableOrigin.y);
         
+        
+    }
+    
+    public void updateKV(Graphics2D g){
+        g.setFont(new Font("Courir", Font.BOLD, FONT_SIZE));
         kvDiagramm.draw(g);
     }
     
@@ -92,7 +97,7 @@ public class Visualizer {
         if (k != null) {
             this.klausel = k;
             truthTable = new TruthTable(klausel);
-            kvDiagramm = new KVDiagramm(klausel.getLiterals(), truthTable.getValues(), 50, new Point(Display.WIDTH - 400, 50));
+            kvDiagramm = new KVDiagramm(klausel.getLiterals(), truthTable.getValues(), 50, new Point(50 ,50));
             tableOrigin = new Point(truthTable.getNumLiterals() * 30 + PADDING, 50);
             values = truthTable.getValues();
             highlightedIndex = -1;

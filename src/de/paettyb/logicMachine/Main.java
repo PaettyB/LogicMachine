@@ -39,9 +39,14 @@ public class Main {
         Klausel k = Parser.parseString("A and B");
         display = new Display(name, width, height);
         display.getTextField().addKeyListener(new KeyManager(this));
-        display.getCanvas().addMouseListener(new MouseManager(this));
+        display.getTableCanvas().addMouseListener(new MouseManager(this));
         visualizer = new Visualizer(k);
         render();
+    }
+    
+    public void render(){
+        renderTable();
+        renderKV();
     }
     
     public void recalculateValues() {
@@ -60,17 +65,34 @@ public class Main {
     
     }
     
-    public synchronized void render() {
-        bs = display.getCanvas().getBufferStrategy();
+    public synchronized void renderKV() {
+        bs = display.getKVCanvas().getBufferStrategy();
         if (bs == null) {
-            display.getCanvas().createBufferStrategy(3);
+            display.getKVCanvas().createBufferStrategy(3);
             return;
         }
         g = bs.getDrawGraphics();
         g.clearRect(0, 0, width, height);
         
         // draw
-        visualizer.updateDisplay((Graphics2D) g);
+        visualizer.updateKV((Graphics2D) g);
+        // end draw
+        
+        g.dispose();
+        bs.show();
+    }
+    
+    public synchronized void renderTable() {
+        bs = display.getTableCanvas().getBufferStrategy();
+        if (bs == null) {
+            display.getTableCanvas().createBufferStrategy(3);
+            return;
+        }
+        g = bs.getDrawGraphics();
+        g.clearRect(0, 0, display.getTableDimension().width, display.getTableDimension().height);
+        
+        // draw
+        visualizer.updateTable((Graphics2D) g);
         // end draw
         
         g.dispose();
@@ -81,11 +103,11 @@ public class Main {
         if (running)
             return;
         running = true;
-        /*run = new Thread("MainEngineThread") {
+        run = new Thread("MainEngineThread") {
             public void run() {
                 while(running){
                     //tick();
-                    //render();
+                    render();
                     try {
                         Thread.sleep(500);
                     } catch (InterruptedException e) {
@@ -96,7 +118,7 @@ public class Main {
             }
         };
         run.start();
-        */
+        
     }
     
     public synchronized void stopGame() {
