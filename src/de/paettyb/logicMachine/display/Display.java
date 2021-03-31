@@ -1,6 +1,7 @@
 package de.paettyb.logicMachine.display;
 
 import java.awt.*;
+import java.util.prefs.Preferences;
 
 import javax.swing.*;
 
@@ -18,14 +19,14 @@ public class Display extends JFrame{
         this.HEIGHT = height;
         this.WIDTH = width;
         createDisplay();
+        showOnScreen(1, this, 300,200);
     }
     
     private void createDisplay() {
         setTitle(NAME);
         setSize(WIDTH, HEIGHT);
         
-        
-        setLocationRelativeTo(null);
+        //setLocation(-1600,100);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         requestFocus();
@@ -33,6 +34,8 @@ public class Display extends JFrame{
     
         textField = new JTextField();
         textField.setVisible(true);
+        textField.setForeground(Color.BLACK);
+        
         textField.setSize(450, 50);
         textField.setLocation(WIDTH-500, HEIGHT-100);
         textField.setFont(new Font("Courir", Font.PLAIN, 20));
@@ -47,6 +50,18 @@ public class Display extends JFrame{
         
         
         pack();
+    }
+    
+    public static void showOnScreen( int screen, JFrame frame, int x, int y ) {
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice[] gd = ge.getScreenDevices();
+        if( screen > -1 && screen < gd.length ) {
+            frame.setLocation(gd[screen].getDefaultConfiguration().getBounds().x+x, gd[screen].getDefaultConfiguration().getBounds().y+y);
+        } else if( gd.length > 0 ) {
+            frame.setLocation(gd[0].getDefaultConfiguration().getBounds().x+x, gd[0].getDefaultConfiguration().getBounds().y+y);
+        } else {
+            throw new RuntimeException( "No Screens Found" );
+        }
     }
     
     

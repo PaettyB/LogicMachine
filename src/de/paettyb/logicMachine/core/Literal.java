@@ -13,8 +13,8 @@ public class Literal  extends Klausel{
     
     public boolean eval(HashMap<String, Boolean> besetzung){
         if(!besetzung.containsKey(name)){
-            if(name.equals("TRUE")) return true;
-            else if(name.equals("FALSE")) return false;
+            if(name.equals("TRUE") || name.equals("1")) return true;
+            else if(name.equals("FALSE") || name.equals("0")) return false;
             System.err.println("Literal name " + name + " not specified");
             throw new NoSuchElementException();
         }

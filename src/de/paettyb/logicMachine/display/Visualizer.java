@@ -6,6 +6,7 @@ import de.paettyb.logicMachine.core.truthTable.TruthTable;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.util.Objects;
 
 public class Visualizer {
     
@@ -29,8 +30,9 @@ public class Visualizer {
             this.klausel = klausel;
             truthTable = new TruthTable(klausel);
             tableOrigin = new Point(truthTable.getNumLiterals() * 30 + PADDING, 50);
-            kvDiagramm = new KVDiagramm(klausel.getLiterals(), truthTable.getValues(), 50, new Point(Display.WIDTH - 400, 200));
+            kvDiagramm = new KVDiagramm(klausel.getLiterals(), truthTable.getValues(), 50, new Point(Display.WIDTH - 400, 50));
             values = truthTable.getValues();
+            
         }
     }
     
@@ -63,11 +65,15 @@ public class Visualizer {
         g.setColor(Color.CYAN);
         
         if (highlightedIndex >= 0) {
-            highlightedX = tableOrigin.x + PADDING + fm.stringWidth(str.substring(0, highlightedIndex));
             g.fillRect(highlightedX, tableOrigin.y - PADDING - fm.getAscent(), fm.charWidth(str.charAt(highlightedIndex)), fm.getHeight());
+        } else {
+            int topIndex;
+            if ((topIndex = getTopLevelIndex()) > -1){
+                highlightedX = tableOrigin.x + PADDING + g.getFontMetrics().stringWidth(klausel.toString().substring(0, topIndex));
+            }
         }
         g.setColor(Color.black);
-        int valuesX = (highlightedIndex == -1) ? tableOrigin.x + PADDING : highlightedX;
+        int valuesX = (highlightedX == -1) ? tableOrigin.x + PADDING : highlightedX;
         for (int i = 0; i < values.length; i++) {
             
             g.drawString(values[i] ? "1" : "0", valuesX, fm.getAscent() + tableOrigin.y + i * fm.getHeight());
@@ -86,7 +92,7 @@ public class Visualizer {
         if (k != null) {
             this.klausel = k;
             truthTable = new TruthTable(klausel);
-            kvDiagramm = new KVDiagramm(klausel.getLiterals(), truthTable.getValues(), 50, new Point(Display.WIDTH - 400, 200));
+            kvDiagramm = new KVDiagramm(klausel.getLiterals(), truthTable.getValues(), 50, new Point(Display.WIDTH - 400, 50));
             tableOrigin = new Point(truthTable.getNumLiterals() * 30 + PADDING, 50);
             values = truthTable.getValues();
             highlightedIndex = -1;
@@ -110,16 +116,33 @@ public class Visualizer {
         highlightedIndex = index;
         if (index == -1) {
             values = truthTable.getValues();
+            highlightedX = tableOrigin.x + PADDING + g.getFontMetrics().stringWidth(klausel.toString().substring(0, getTopLevelIndex()));
             return;
         }
         if (truthTable.getOperatorIndices().containsKey(index)) {
             TruthTable newTable = new TruthTable(truthTable.getOperatorIndices().get(index), klausel.getLiterals());
             values = newTable.getValues();
+            highlightedX = tableOrigin.x + PADDING + g.getFontMetrics().stringWidth(klausel.toString().substring(0, highlightedIndex));
         } else {
             highlightedIndex = -1;
             values = truthTable.getValues();
+            int topIndex = getTopLevelIndex();
+            if(topIndex > -1) {
+                highlightedX = tableOrigin.x + PADDING + g.getFontMetrics().stringWidth(klausel.toString().substring(0, topIndex));
+            } else {
+            
+            }
             return;
         }
+    }
+    
+    private int getTopLevelIndex() {
+        if (truthTable.getOperatorIndices().containsValue(klausel)) {
+            return truthTable.getOperatorIndices().entrySet().stream()
+                    .filter(entry -> Objects.equals(entry.getValue(), klausel))
+                    .findFirst().get().getKey();
+        }
+        return -1;
     }
     
     private Point getOffsetToText(Point mouse) {

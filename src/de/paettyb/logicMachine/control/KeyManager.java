@@ -26,10 +26,14 @@ public class KeyManager implements KeyListener {
     
     @Override
     public void keyReleased(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+            main.stopGame();
+            return;
+        }
         JTextField textField = main.getDisplay().getTextField();
         if(e.getKeyChar() == '('){
             int pos = textField.getCaretPosition();
-            textField.setText(textField.getText()+")");
+            textField.setText(textField.getText().substring(0, pos) + ")" + textField.getText().substring(pos));
             textField.setCaretPosition(pos);
         }
         main.recalculateValues();

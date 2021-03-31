@@ -102,6 +102,8 @@ public class Parser {
         s = s.replaceAll("\\(\s", "(");
         s = s.replaceAll("\s\\)", ")");
         s = s.toLowerCase();
+        s = s.replaceAll("true", "1");
+        s = s.replaceAll("false", "0");
         s = boxString(s);
         return parseStringRekursive(s);
     }

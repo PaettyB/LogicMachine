@@ -7,6 +7,7 @@ import de.paettyb.logicMachine.core.Parser;
 import de.paettyb.logicMachine.display.Display;
 import de.paettyb.logicMachine.display.Visualizer;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
@@ -35,16 +36,22 @@ public class Main {
     }
     
     private void init() {
-        Klausel k = Parser.parseString("A");
+        Klausel k = Parser.parseString("A and B");
         display = new Display(name, width, height);
         display.getTextField().addKeyListener(new KeyManager(this));
         display.getCanvas().addMouseListener(new MouseManager(this));
         visualizer = new Visualizer(k);
+        render();
     }
     
-    public void recalculateValues(){
+    public void recalculateValues() {
         String s = display.getTextField().getText();
         Klausel k = Parser.parseString(s);
+        if(k == null) {
+            display.getTextField().setBorder(BorderFactory.createLineBorder(new Color(255, 77, 77), 3));
+        } else {
+            display.getTextField().setBorder(BorderFactory.createLineBorder(new Color(21, 118, 0),3));
+        }
         visualizer.recalculateValues(k);
         render();
     }
@@ -74,69 +81,30 @@ public class Main {
         if (running)
             return;
         running = true;
-        run = new Thread("MainEngineThread") {
+        /*run = new Thread("MainEngineThread") {
             public void run() {
-                
-                /*long lastTime = System.nanoTime();
-                int fps = 5;
-                double timePerTick = 1000000000 / fps;
-                double delta = 0;
-                long now;
-                long timer = 0;
-                long ticks = 0;
-                
-                while (running) {
-                    now = System.nanoTime();
-                    delta += (now - lastTime) / timePerTick;
-                    timer += now - lastTime;
-                    lastTime = now;
-                    if (delta > 1) {
-                        tick();
-                        render();
-                        ticks++;
-                        delta--;
-                    }
-                    
-                    if(timer >= 1000000000) {
-                        ticks = 0;
-                        timer = 0;
-                    }
-                }
-                
-                stopGame();
-                System.exit(0);
-                
-                 */
-                
                 while(running){
-                    tick();
-                    render();
+                    //tick();
+                    //render();
                     try {
                         Thread.sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-                stopGame();
-                System.exit(0);
+                //System.exit(0);
             }
-            
-            
         };
-        
         run.start();
-        
+        */
     }
     
     public synchronized void stopGame() {
         if (!running)
             return;
         running = false;
-        try {
-            run.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        display.dispose();
+        //run.join();
     }
     
     public int getWidth() {
@@ -157,6 +125,10 @@ public class Main {
     
     public boolean isRunning() {
         return running;
+    }
+    
+    public void setRunning(boolean running) {
+        this.running = running;
     }
     
     public Visualizer getVisualizer() {

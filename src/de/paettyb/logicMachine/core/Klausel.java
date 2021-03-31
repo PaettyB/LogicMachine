@@ -12,10 +12,12 @@ public abstract class Klausel {
     
     public abstract boolean eval(HashMap<String, Boolean> besetzung);
     
+    
     public String[] getLiterals() {
         ArrayList<String> list = new ArrayList();
         this.getLiteralsRecursive(list);
-        List<String> sortedList = list.stream().distinct().sorted().collect(Collectors.toList());
+        List<String> sortedList = list.stream().distinct().sorted()
+                .filter(s -> (!s.equals("1") && !s.equals("0"))).collect(Collectors.toList());
         return sortedList.toArray(new String[sortedList.size()]);
     }
     
