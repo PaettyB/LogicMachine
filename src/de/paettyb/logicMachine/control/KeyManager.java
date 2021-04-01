@@ -3,6 +3,7 @@ package de.paettyb.logicMachine.control;
 import de.paettyb.logicMachine.Main;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -26,8 +27,15 @@ public class KeyManager implements KeyListener {
     
     @Override
     public void keyReleased(KeyEvent e) {
+    
         if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
             main.stopGame();
+            return;
+        }
+    
+        if(e.getKeyCode()== KeyEvent.VK_X){
+            main.getDisplay().getTextField().setText("A or B or C or D or E");
+            e.consume();
             return;
         }
         JTextField textField = main.getDisplay().getTextField();

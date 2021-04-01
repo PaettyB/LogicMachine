@@ -11,6 +11,7 @@ import java.util.Objects;
 public class Visualizer {
     
     public static int FONT_SIZE = 30;
+    public static int MINIMUM_CANVAS_HEIGHT = 2000;
     public static int PADDING = 10;
     private Point tableOrigin;
     
@@ -21,6 +22,8 @@ public class Visualizer {
     private int highlightedIndex = -1;
     private int highlightedX = -1;
     
+    private int newCanvasHeight = 700;
+    
     private boolean[] values;
     
     private Graphics2D g;
@@ -30,7 +33,7 @@ public class Visualizer {
             this.klausel = klausel;
             truthTable = new TruthTable(klausel);
             tableOrigin = new Point(truthTable.getNumLiterals() * 30 + PADDING, 50);
-            kvDiagramm = new KVDiagramm(klausel.getLiterals(), truthTable.getValues(), 50, new Point(0,0));
+            kvDiagramm = new KVDiagramm(klausel.getLiterals(), truthTable.getValues(), 50, new Point(50,50));
             values = truthTable.getValues();
             
         }
@@ -70,6 +73,8 @@ public class Visualizer {
             int topIndex;
             if ((topIndex = getTopLevelIndex()) > -1){
                 highlightedX = tableOrigin.x + PADDING + g.getFontMetrics().stringWidth(klausel.toString().substring(0, topIndex));
+            }else {
+                highlightedX = tableOrigin.x+PADDING;
             }
         }
         g.setColor(Color.black);
@@ -101,6 +106,9 @@ public class Visualizer {
             tableOrigin = new Point(truthTable.getNumLiterals() * 30 + PADDING, 50);
             values = truthTable.getValues();
             highlightedIndex = -1;
+            newCanvasHeight = (int) (g.getFontMetrics().getHeight() * Math.pow(2,klausel.getLiterals().length) + 100);
+            if(newCanvasHeight < MINIMUM_CANVAS_HEIGHT)
+                newCanvasHeight = MINIMUM_CANVAS_HEIGHT;
         }
     }
     
@@ -121,7 +129,12 @@ public class Visualizer {
         highlightedIndex = index;
         if (index == -1) {
             values = truthTable.getValues();
-            highlightedX = tableOrigin.x + PADDING + g.getFontMetrics().stringWidth(klausel.toString().substring(0, getTopLevelIndex()));
+            int topIndex;
+            if ((topIndex = getTopLevelIndex()) > -1){
+                highlightedX = tableOrigin.x + PADDING + g.getFontMetrics().stringWidth(klausel.toString().substring(0, topIndex));
+            } else {
+                highlightedX = tableOrigin.x+PADDING;
+            }
             return;
         }
         if (truthTable.getOperatorIndices().containsKey(index)) {
@@ -169,5 +182,9 @@ public class Visualizer {
             }
         }
         return -1;
+    }
+    
+    public int getNewCanvasHeight() {
+        return newCanvasHeight;
     }
 }

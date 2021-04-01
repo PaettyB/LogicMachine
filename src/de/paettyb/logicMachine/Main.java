@@ -2,6 +2,7 @@ package de.paettyb.logicMachine;
 
 import de.paettyb.logicMachine.control.KeyManager;
 import de.paettyb.logicMachine.control.MouseManager;
+import de.paettyb.logicMachine.control.ScrollListener;
 import de.paettyb.logicMachine.core.Klausel;
 import de.paettyb.logicMachine.core.Parser;
 import de.paettyb.logicMachine.display.Display;
@@ -9,6 +10,7 @@ import de.paettyb.logicMachine.display.Visualizer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ContainerListener;
 import java.awt.image.BufferStrategy;
 
 
@@ -40,11 +42,12 @@ public class Main {
         display = new Display(name, width, height);
         display.getTextField().addKeyListener(new KeyManager(this));
         display.getTableCanvas().addMouseListener(new MouseManager(this));
+        display.getScrollPane().getVerticalScrollBar().addAdjustmentListener(new ScrollListener(this));
         visualizer = new Visualizer(k);
         render();
     }
     
-    public void render(){
+    public void render() {
         renderTable();
         renderKV();
     }
@@ -52,12 +55,15 @@ public class Main {
     public void recalculateValues() {
         String s = display.getTextField().getText();
         Klausel k = Parser.parseString(s);
-        if(k == null) {
+        if (k == null) {
             display.getTextField().setBorder(BorderFactory.createLineBorder(new Color(255, 77, 77), 3));
         } else {
-            display.getTextField().setBorder(BorderFactory.createLineBorder(new Color(21, 118, 0),3));
+            display.getTextField().setBorder(BorderFactory.createLineBorder(new Color(21, 118, 0), 3));
         }
         visualizer.recalculateValues(k);
+        System.out.println(visualizer.getNewCanvasHeight());
+        display.setTableDimension(new Dimension(display.getTableDimension().width, visualizer.getNewCanvasHeight()));
+        display.updateComponents();
         render();
     }
     
@@ -105,7 +111,7 @@ public class Main {
         running = true;
         run = new Thread("MainEngineThread") {
             public void run() {
-                while(running){
+                while (running) {
                     //tick();
                     render();
                     try {
