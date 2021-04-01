@@ -5,6 +5,7 @@ import de.paettyb.logicMachine.control.ScrollListener;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicSliderUI;
 import java.awt.*;
+import java.util.concurrent.Flow;
 
 public class Display extends JFrame {
     
@@ -27,72 +28,57 @@ public class Display extends JFrame {
     private void createDisplay() {
         setTitle(NAME);
         Dimension dimension = new Dimension(WIDTH, HEIGHT);
-        System.out.println(getLayout());
-        setLayout(new BoxLayout(getContentPane(), BoxLayout.LINE_AXIS));
-        setSize(dimension);
+        //setLayout(new BoxLayout(getContentPane(), BoxLayout.LINE_AXIS));
         setMinimumSize(dimension);
         setMaximumSize(dimension);
         setPreferredSize(dimension);
         setBackground(Color.cyan);
         
-        
-        
-        //setLocation(-1600,100);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         requestFocus();
-        setVisible(true);
+
         
         
-        
-        
-        
-        scrollDimension = new Dimension(780, 700);
+        scrollDimension = new Dimension(750, 700);
         tableDimension = new Dimension(750, 2000);
         kvDimension = new Dimension(400, 400);
         
-        JScrollPane scrollPane = new JScrollPane();
-        //scrollPane.setMaximumSize(scrollDimension);
-        //scrollPane.setMinimumSize(scrollDimension);
-        //scrollPane.setPreferredSize(scrollDimension);
-        //scrollPane.setSize(scrollDimension);
-        
-        
-        
+    
         tableCanvas = new Canvas();
-        
-        tableCanvas.setMaximumSize(tableDimension);
-        tableCanvas.setMinimumSize(tableDimension);
         tableCanvas.setPreferredSize(tableDimension);
-        tableCanvas.setSize(tableDimension);
-        tableCanvas.setBackground(Color.RED);
-        
-        scrollPane.add(tableCanvas);
-        //scrollPane.createVerticalScrollBar();
-        //scrollPane.getVerticalScrollBar().set
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        tableCanvas.setMinimumSize(tableDimension);
+        tableCanvas.setMaximumSize(tableDimension);
+        tableCanvas.setBackground(Color.lightGray);
+        JScrollPane scrollPane = new JScrollPane(tableCanvas, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.getVerticalScrollBar().addAdjustmentListener(new ScrollListener());
-        add(scrollPane);
+        scrollPane.setPreferredSize(scrollDimension);
+        //scrollPane.setMinimumSize(scrollDimension);
+        //scrollPane.setMaximumSize(scrollDimension);
+        add(scrollPane, BorderLayout.LINE_START);
+        
+        JPanel rightPanel = new JPanel();
+        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
         
         kvCanvas = new Canvas();
         kvCanvas.setMaximumSize(kvDimension);
         kvCanvas.setMinimumSize(kvDimension);
         kvCanvas.setPreferredSize(kvDimension);
-        kvCanvas.setSize(kvDimension);
         kvCanvas.setBackground(Color.BLUE);
-        add(kvCanvas);
-        kvCanvas.setLocation(new Point(800, 50));
     
         textField = new JTextField();
         textField.setVisible(true);
         textField.setForeground(Color.BLACK);
-        textField.setSize(450, 50);
-        textField.setLocation(WIDTH - 500, HEIGHT - 100);
-        textField.setFont(new Font("Courir", Font.PLAIN, 20));
-        add(textField);
+        textField.setPreferredSize(new Dimension(450, 50));
+        textField.setMaximumSize(new Dimension(450, 50));
+        textField.setAlignmentY(Component.BOTTOM_ALIGNMENT);
         
-        //setComponentZOrder(textField, 100);
-        //pack();
+        textField.setFont(new Font("Courir", Font.PLAIN, 20));
+        rightPanel.add(kvCanvas);
+        rightPanel.add(textField);
+        add(rightPanel, BorderLayout.LINE_END);
+        pack();
+        setVisible(true);
     }
     
     public static void showOnScreen(int screen, JFrame frame, int x, int y) {

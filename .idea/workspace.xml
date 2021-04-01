@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6acd6e2-d43d-47b0-8a2b-7b1dd34e5ca0" name="Default Changelist" comment="Merged Branch">
-      <change afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/control/ScrollListener.java" afterDir="false" />
+    <list default="true" id="e6acd6e2-d43d-47b0-8a2b-7b1dd34e5ca0" name="Default Changelist" comment="Added Formula feedback">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/control/ScrollListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/control/ScrollListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Display.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Visualizer.java" afterDir="false" />
     </list>
     <list id="1199ee51-86ae-409a-884b-497b18404339" name="First Commit" comment="First Commit">
       <changelist_data name="Patrick Barclay" email="patrick.d.barclay@gmail.com" date="1616580804000" />
@@ -129,17 +128,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
