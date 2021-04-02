@@ -32,12 +32,7 @@ public class KeyManager implements KeyListener {
             main.stopGame();
             return;
         }
-    
-        if(e.getKeyCode()== KeyEvent.VK_X){
-            main.getDisplay().getTextField().setText("A or B or C or D or E");
-            e.consume();
-            return;
-        }
+        
         JTextField textField = main.getDisplay().getTextField();
         if(e.getKeyChar() == '('){
             int pos = textField.getCaretPosition();

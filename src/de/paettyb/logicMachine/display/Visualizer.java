@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Visualizer {
     
     public static int FONT_SIZE = 30;
-    public static int MINIMUM_CANVAS_HEIGHT = 2000;
+    public static int MINIMUM_CANVAS_HEIGHT = 678;
     public static int PADDING = 10;
     private Point tableOrigin;
     
@@ -33,7 +33,7 @@ public class Visualizer {
             this.klausel = klausel;
             truthTable = new TruthTable(klausel);
             tableOrigin = new Point(truthTable.getNumLiterals() * 30 + PADDING, 50);
-            kvDiagramm = new KVDiagramm(klausel.getLiterals(), truthTable.getValues(), 50, new Point(50,50));
+            kvDiagramm = new KVDiagramm(klausel.getLiterals(), truthTable.getValues(), 50, new Point(50, 50));
             values = truthTable.getValues();
             
         }
@@ -71,10 +71,10 @@ public class Visualizer {
             g.fillRect(highlightedX, tableOrigin.y - PADDING - fm.getAscent(), fm.charWidth(str.charAt(highlightedIndex)), fm.getHeight());
         } else {
             int topIndex;
-            if ((topIndex = getTopLevelIndex()) > -1){
+            if ((topIndex = getTopLevelIndex()) > -1) {
                 highlightedX = tableOrigin.x + PADDING + g.getFontMetrics().stringWidth(klausel.toString().substring(0, topIndex));
-            }else {
-                highlightedX = tableOrigin.x+PADDING;
+            } else {
+                highlightedX = tableOrigin.x + PADDING;
             }
         }
         g.setColor(Color.black);
@@ -87,13 +87,13 @@ public class Visualizer {
         
         g.drawString(str, tableOrigin.x + PADDING, tableOrigin.y - PADDING);
         
-        g.drawLine(tableOrigin.x, 0, tableOrigin.x, Display.HEIGHT);
+        g.drawLine(tableOrigin.x, 0, tableOrigin.x, newCanvasHeight);
         g.drawLine(0, tableOrigin.y, Display.WIDTH - 500, tableOrigin.y);
         
         
     }
     
-    public void updateKV(Graphics2D g){
+    public void updateKV(Graphics2D g) {
         g.setFont(new Font("Courir", Font.BOLD, FONT_SIZE));
         kvDiagramm.draw(g);
     }
@@ -102,12 +102,12 @@ public class Visualizer {
         if (k != null) {
             this.klausel = k;
             truthTable = new TruthTable(klausel);
-            kvDiagramm = new KVDiagramm(klausel.getLiterals(), truthTable.getValues(), 50, new Point(50 ,50));
+            kvDiagramm = new KVDiagramm(klausel.getLiterals(), truthTable.getValues(), 50, new Point(50, 50));
             tableOrigin = new Point(truthTable.getNumLiterals() * 30 + PADDING, 50);
             values = truthTable.getValues();
             highlightedIndex = -1;
-            newCanvasHeight = (int) (g.getFontMetrics().getHeight() * Math.pow(2,klausel.getLiterals().length) + 100);
-            if(newCanvasHeight < MINIMUM_CANVAS_HEIGHT)
+            newCanvasHeight = (int) (g.getFontMetrics().getHeight() * Math.pow(2, klausel.getLiterals().length) + 50);
+            if (newCanvasHeight < MINIMUM_CANVAS_HEIGHT)
                 newCanvasHeight = MINIMUM_CANVAS_HEIGHT;
         }
     }
@@ -130,10 +130,10 @@ public class Visualizer {
         if (index == -1) {
             values = truthTable.getValues();
             int topIndex;
-            if ((topIndex = getTopLevelIndex()) > -1){
+            if ((topIndex = getTopLevelIndex()) > -1) {
                 highlightedX = tableOrigin.x + PADDING + g.getFontMetrics().stringWidth(klausel.toString().substring(0, topIndex));
             } else {
-                highlightedX = tableOrigin.x+PADDING;
+                highlightedX = tableOrigin.x + PADDING;
             }
             return;
         }
@@ -145,7 +145,7 @@ public class Visualizer {
             highlightedIndex = -1;
             values = truthTable.getValues();
             int topIndex = getTopLevelIndex();
-            if(topIndex > -1) {
+            if (topIndex > -1) {
                 highlightedX = tableOrigin.x + PADDING + g.getFontMetrics().stringWidth(klausel.toString().substring(0, topIndex));
             } else {
             

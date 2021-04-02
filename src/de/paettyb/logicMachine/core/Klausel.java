@@ -66,7 +66,7 @@ public abstract class Klausel {
         LinkedList<Operator> operators = getOperators();
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if (c == '\u2227' || c == '\u27F6' || c == '\u00AC' || c == '\u2228' || c == '\u2295') {
+            if (c == '\u2227' || c == '\u27F6' || c == '\u00AC' || c == '\u2228' || c == '\u2295' || c == '\u2194') {
                 map.put(i, operators.pollFirst());
             }
         }

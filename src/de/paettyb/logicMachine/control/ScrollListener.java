@@ -19,8 +19,6 @@ public class ScrollListener implements AdjustmentListener {
     
     @Override
     public void adjustmentValueChanged(AdjustmentEvent e) {
-        //main.getDisplay().updateComponents();
-        main.getDisplay().getTableCanvas().repaint();
-        main.render();
+
     }
 }

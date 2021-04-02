@@ -17,4 +17,11 @@ public class Gdw extends BinOp {
         if((!b1 && !b2) || (b1 && b2)) return true;
         return false;
     }
+    
+    @Override
+    public String toString() {
+        if(SPECIAL_PRINT_MODE)
+            return "(" + k1.toString() + " \u2194 " + k2.toString() + ")";
+        return super.toString();
+    }
 }

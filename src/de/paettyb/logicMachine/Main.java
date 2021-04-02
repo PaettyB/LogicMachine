@@ -10,7 +10,6 @@ import de.paettyb.logicMachine.display.Visualizer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ContainerListener;
 import java.awt.image.BufferStrategy;
 
 
@@ -39,16 +38,15 @@ public class Main {
     
     private void init() {
         Klausel k = Parser.parseString("A and B");
-        display = new Display(name, width, height);
-        display.getTextField().addKeyListener(new KeyManager(this));
-        display.getTableCanvas().addMouseListener(new MouseManager(this));
-        display.getScrollPane().getVerticalScrollBar().addAdjustmentListener(new ScrollListener(this));
         visualizer = new Visualizer(k);
+        display = new Display(this, name, width, height);
+        display.getTextField().addKeyListener(new KeyManager(this));
+        display.getScrollPane().addMouseListener(new MouseManager(this));
+        display.getScrollPane().getVerticalScrollBar().addAdjustmentListener(new ScrollListener(this));
         render();
     }
     
     public void render() {
-        renderTable();
         renderKV();
     }
     
@@ -61,7 +59,6 @@ public class Main {
             display.getTextField().setBorder(BorderFactory.createLineBorder(new Color(21, 118, 0), 3));
         }
         visualizer.recalculateValues(k);
-        System.out.println(visualizer.getNewCanvasHeight());
         display.setTableDimension(new Dimension(display.getTableDimension().width, visualizer.getNewCanvasHeight()));
         display.updateComponents();
         render();
@@ -88,28 +85,18 @@ public class Main {
         bs.show();
     }
     
-    public synchronized void renderTable() {
-        bs = display.getTableCanvas().getBufferStrategy();
-        if (bs == null) {
-            display.getTableCanvas().createBufferStrategy(3);
-            return;
-        }
-        g = bs.getDrawGraphics();
+    public synchronized void renderTable(Graphics g) {
         g.clearRect(0, 0, display.getTableDimension().width, display.getTableDimension().height);
-        
-        // draw
+        g.setColor(Color.lightGray);
+        g.fillRect(0, 0, display.getTableDimension().width, display.getTableDimension().height);
         visualizer.updateTable((Graphics2D) g);
-        // end draw
-        
-        g.dispose();
-        bs.show();
     }
     
     public synchronized void start() {
         if (running)
             return;
         running = true;
-        run = new Thread("MainEngineThread") {
+       /* run = new Thread("MainEngineThread") {
             public void run() {
                 while (running) {
                     //tick();
@@ -123,7 +110,7 @@ public class Main {
                 //System.exit(0);
             }
         };
-        run.start();
+        run.start();*/
         
     }
     

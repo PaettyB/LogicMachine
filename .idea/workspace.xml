@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6acd6e2-d43d-47b0-8a2b-7b1dd34e5ca0" name="Default Changelist" comment="Scrollbar Attempt 2">
+    <list default="true" id="e6acd6e2-d43d-47b0-8a2b-7b1dd34e5ca0" name="Default Changelist" comment="Scrollbar Attempt 3">
+      <change afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/TablePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/control/KeyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/control/KeyManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/control/MouseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/control/MouseManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/control/ScrollListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/control/ScrollListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/Klausel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/Klausel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/operators/Gdw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/operators/Gdw.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Display.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Visualizer.java" afterDir="false" />
     </list>
@@ -175,7 +179,9 @@
       <workItem from="1616841741376" duration="119000" />
       <workItem from="1616921255240" duration="7092000" />
       <workItem from="1617198103579" duration="5022000" />
-      <workItem from="1617307326501" duration="7647000" />
+      <workItem from="1617307326501" duration="7690000" />
+      <workItem from="1617354043972" duration="1498000" />
+      <workItem from="1617360158498" duration="3992000" />
     </task>
     <task id="LOCAL-00001" summary="Added Selectable Operators with Updating TruthTable and KVDiagram">
       <created>1616590613852</created>
@@ -212,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617296614605</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Scrollbar Attempt 3">
+      <created>1617315061452</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1617315061452</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,7 +249,8 @@
     <MESSAGE value="Added TextBox and Updating text" />
     <MESSAGE value="Merged Branch" />
     <MESSAGE value="Scrollbar Attempt 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Scrollbar Attempt 2" />
+    <MESSAGE value="Scrollbar Attempt 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Scrollbar Attempt 3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

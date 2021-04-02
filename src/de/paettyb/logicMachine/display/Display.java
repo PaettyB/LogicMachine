@@ -1,6 +1,6 @@
 package de.paettyb.logicMachine.display;
 
-import de.paettyb.logicMachine.control.ScrollListener;
+import de.paettyb.logicMachine.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,20 +11,21 @@ public class Display extends JFrame {
     public static String NAME;
     public static int WIDTH, HEIGHT;
     
-    private Canvas tableCanvas, kvCanvas;
+    private Canvas kvCanvas;
     private Dimension tableDimension, kvDimension, scrollDimension;
     private JTextField textField;
     private JScrollPane scrollPane;
+    private TablePanel tablePanel;
     
-    public Display(String name, int width, int height) {
+    public Display(Main main, String name, int width, int height) {
         NAME = name;
         HEIGHT = height;
         WIDTH = width;
-        createDisplay();
+        createDisplay(main);
         showOnScreen(1, this, 100, 100);
     }
     
-    private void createDisplay() {
+    private void createDisplay(Main main) {
         setTitle(NAME);
         Dimension dimension = new Dimension(WIDTH, HEIGHT);
         setMinimumSize(dimension);
@@ -34,26 +35,18 @@ public class Display extends JFrame {
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-        requestFocus();
-        
         
         scrollDimension = new Dimension(750, 700);
         tableDimension = new Dimension(750, Visualizer.MINIMUM_CANVAS_HEIGHT);
         kvDimension = new Dimension(400, 400);
         
+        tablePanel = new TablePanel(main);
+        tablePanel.setPreferredSize(tableDimension);
+        tablePanel.setBackground(Color.cyan);
         
-        tableCanvas = new Canvas();
-        tableCanvas.setPreferredSize(tableDimension);
-        tableCanvas.setMinimumSize(tableDimension);
-        tableCanvas.setMaximumSize(tableDimension);
-        tableCanvas.setBackground(Color.lightGray);
-        JPanel scrollPanel = new JPanel();
-        scrollPanel.add(tableCanvas);
-        scrollPanel.setBackground(Color.magenta);
-        
-        scrollPane = new JScrollPane(scrollPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane = new JScrollPane(tablePanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setPreferredSize(scrollDimension);
-        scrollPane.setForeground(Color.gray);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(20);
         add(scrollPane, BorderLayout.LINE_START);
         
         JPanel rightPanel = new JPanel();
@@ -70,22 +63,23 @@ public class Display extends JFrame {
         textField.setPreferredSize(new Dimension(500, 50));
         textField.setMaximumSize(new Dimension(500, 50));
         
-        
         textField.setFont(new Font("Courir", Font.PLAIN, 20));
+        textField.setAlignmentY(50);
         rightPanel.add(kvCanvas);
-        rightPanel.add(Box.createRigidArea(new Dimension(0, 100)));
+        //rightPanel.add(Box.createRigidArea(new Dimension(0, 100)));
         rightPanel.add(textField);
         add(rightPanel, BorderLayout.LINE_END);
         pack();
         setVisible(true);
-
+        textField.requestFocus();
+        
     }
     
     public void updateComponents() {
-        tableCanvas.setPreferredSize(tableDimension);
-        tableCanvas.setMinimumSize(tableDimension);
-        tableCanvas.setMaximumSize(tableDimension);
-        scrollPane.validate();
+        tablePanel.setPreferredSize(tableDimension);
+        scrollPane.getVerticalScrollBar().setValue(0);
+        tablePanel.revalidate();
+        tablePanel.repaint();
         
     }
     
@@ -99,11 +93,6 @@ public class Display extends JFrame {
         } else {
             throw new RuntimeException("No Screens Found");
         }
-    }
-    
-    
-    public Canvas getTableCanvas() {
-        return tableCanvas;
     }
     
     public Canvas getKVCanvas() {
