@@ -3,18 +3,18 @@ package de.paettyb.logicMachine.core;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 
-public class Literal  extends Klausel{
+public class Literal extends Klausel {
     
     private String name;
     
-    public Literal(String name){
+    public Literal(String name) {
         this.name = name.toUpperCase();
     }
     
-    public boolean eval(HashMap<String, Boolean> besetzung){
-        if(!besetzung.containsKey(name)){
-            if(name.equals("TRUE") || name.equals("1")) return true;
-            else if(name.equals("FALSE") || name.equals("0")) return false;
+    public boolean eval(HashMap<String, Boolean> besetzung) {
+        if (!besetzung.containsKey(name)) {
+            if (name.equals("TRUE") || name.equals("1")) return true;
+            else if (name.equals("FALSE") || name.equals("0")) return false;
             System.err.println("Literal name " + name + " not specified");
             throw new NoSuchElementException();
         }
@@ -26,12 +26,12 @@ public class Literal  extends Klausel{
         return name;
     }
     
-    public String getName(){
+    public String getName() {
         return name;
     }
     
-    public boolean equals(Object other){
-        if( !(other instanceof Literal)) return false;
+    public boolean equals(Object other) {
+        if (!(other instanceof Literal)) return false;
         return ((Literal) other).getName().equals(name);
     }
 }

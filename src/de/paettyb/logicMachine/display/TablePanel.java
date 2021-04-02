@@ -9,12 +9,12 @@ public class TablePanel extends JPanel {
     
     private Main main;
     
-    public TablePanel (Main main){
+    public TablePanel(Main main) {
         this.main = main;
     }
     
     @Override
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
         main.renderTable(g);
     }
 }

@@ -25,7 +25,7 @@ public class TruthTable {
         this(klausel, klausel.getLiterals());
     }
     
-    public TruthTable(Klausel klausel, String[] literals){
+    public TruthTable(Klausel klausel, String[] literals) {
         this.klausel = klausel;
         this.literals = literals;
         length = (int) Math.pow(2, literals.length);

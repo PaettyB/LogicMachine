@@ -2,7 +2,6 @@ package de.paettyb.logicMachine;
 
 import de.paettyb.logicMachine.control.KeyManager;
 import de.paettyb.logicMachine.control.MouseManager;
-import de.paettyb.logicMachine.control.ScrollListener;
 import de.paettyb.logicMachine.core.Klausel;
 import de.paettyb.logicMachine.core.Parser;
 import de.paettyb.logicMachine.display.Display;
@@ -15,38 +14,20 @@ import java.awt.image.BufferStrategy;
 
 public class Main {
     
-    private final String name;
-    private final int width;
-    private final int height;
-    
     private Display display;
     private Graphics g;
     private BufferStrategy bs;
     
-    private Thread run;
     private boolean running = false;
     
     private Visualizer visualizer;
     
     public Main(String name, int width, int height) {
-        this.name = name;
-        this.width = width;
-        this.height = height;
-        
-        init();
-    }
-    
-    private void init() {
         Klausel k = Parser.parseString("A and B");
         visualizer = new Visualizer(k);
         display = new Display(this, name, width, height);
         display.getTextField().addKeyListener(new KeyManager(this));
         display.getScrollPane().addMouseListener(new MouseManager(this));
-        display.getScrollPane().getVerticalScrollBar().addAdjustmentListener(new ScrollListener(this));
-        render();
-    }
-    
-    public void render() {
         renderKV();
     }
     
@@ -61,11 +42,7 @@ public class Main {
         visualizer.recalculateValues(k);
         display.setTableDimension(new Dimension(display.getTableDimension().width, visualizer.getNewCanvasHeight()));
         display.updateComponents();
-        render();
-    }
-    
-    private void tick() {
-    
+        renderKV();
     }
     
     public synchronized void renderKV() {
@@ -75,7 +52,7 @@ public class Main {
             return;
         }
         g = bs.getDrawGraphics();
-        g.clearRect(0, 0, width, height);
+        g.clearRect(0, 0, Display.WIDTH, Display.HEIGHT);
         
         // draw
         visualizer.updateKV((Graphics2D) g);
@@ -96,22 +73,6 @@ public class Main {
         if (running)
             return;
         running = true;
-       /* run = new Thread("MainEngineThread") {
-            public void run() {
-                while (running) {
-                    //tick();
-                    render();
-                    try {
-                        Thread.sleep(50);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                //System.exit(0);
-            }
-        };
-        run.start();*/
-        
     }
     
     public synchronized void stopGame() {
@@ -119,23 +80,10 @@ public class Main {
             return;
         running = false;
         display.dispose();
-        //run.join();
-    }
-    
-    public int getWidth() {
-        return width;
-    }
-    
-    public int getHeight() {
-        return height;
     }
     
     public Display getDisplay() {
         return display;
-    }
-    
-    public Graphics getGraphics() {
-        return g;
     }
     
     public boolean isRunning() {

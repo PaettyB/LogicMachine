@@ -73,7 +73,7 @@ public class KVDiagramm {
             for (int j = 0; j < indices[i].length; j++) {
                 boolean val = values[indices[i][j]];
                 if (val)
-                    g.fillRect((pos.x + 1 )+ i * size, (pos.y + 1) + j * size, size - 1, size-1);
+                    g.fillRect((pos.x + 1) + i * size, (pos.y + 1) + j * size, size - 1, size - 1);
             }
         }
     }

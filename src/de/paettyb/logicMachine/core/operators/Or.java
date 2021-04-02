@@ -7,31 +7,29 @@ import java.util.HashMap;
 
 public class Or extends BinOp {
     
-
     
     public Or(Klausel k1, Klausel k2) {
         super(k1, k2);
     }
     
-    public Or(Klausel[] klausels, int index, Klausel parent){
+    public Or(Klausel[] klausels, int index, Klausel parent) {
         super(null, null);
-        if(index >= klausels.length-2){
-            if(klausels[index] instanceof BinOp)
+        if (index >= klausels.length - 2) {
+            if (klausels[index] instanceof BinOp)
                 ((BinOp) klausels[index]).setParent(this);
-            if(klausels[index+1] instanceof BinOp)
-                ((BinOp) klausels[index+1]).setParent(this);
+            if (klausels[index + 1] instanceof BinOp)
+                ((BinOp) klausels[index + 1]).setParent(this);
             setK1(klausels[index]);
-            setK2(klausels[index+1]);
+            setK2(klausels[index + 1]);
         } else {
-            if(klausels[index] instanceof BinOp)
+            if (klausels[index] instanceof BinOp)
                 ((BinOp) klausels[index]).setParent(this);
             setK1(klausels[index]);
-            setK2(new Or(klausels, index+1, this));
+            setK2(new Or(klausels, index + 1, this));
         }
         
         this.parent = parent;
     }
-    
     
     
     public boolean eval(HashMap<String, Boolean> besetzung) {
