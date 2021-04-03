@@ -28,7 +28,6 @@ public class Main {
         display = new Display(this, name, width, height);
         display.getTextField().addKeyListener(new KeyManager(this));
         display.getScrollPane().addMouseListener(new MouseManager(this));
-        renderKV();
     }
     
     public void recalculateValues() {
@@ -42,28 +41,18 @@ public class Main {
         visualizer.recalculateValues(k);
         display.setTableDimension(new Dimension(display.getTableDimension().width, visualizer.getNewCanvasHeight()));
         display.updateComponents();
-        renderKV();
     }
     
-    public synchronized void renderKV() {
-        bs = display.getKVCanvas().getBufferStrategy();
-        if (bs == null) {
-            display.getKVCanvas().createBufferStrategy(3);
-            return;
-        }
-        g = bs.getDrawGraphics();
-        g.clearRect(0, 0, Display.WIDTH, Display.HEIGHT);
-        
-        // draw
+    public synchronized void renderKV(Graphics g) {
+        g.clearRect(0, 0, display.getKvDimension().width, display.getKvDimension().height);
+        g.setColor(Color.WHITE);
+        g.fillRect(0, 0, Display.WIDTH, Display.HEIGHT);
         visualizer.updateKV((Graphics2D) g);
-        // end draw
-        
-        g.dispose();
-        bs.show();
     }
     
     public synchronized void renderTable(Graphics g) {
-        g.clearRect(0, 0, display.getTableDimension().width, display.getTableDimension().height);
+        g.clearRect(0, 0, Display.WIDTH, Display.HEIGHT);
+        //g.clearRect(0, 0, display.getTableDimension().width, display.getTableDimension().height);
         g.setColor(Color.lightGray);
         g.fillRect(0, 0, display.getTableDimension().width, display.getTableDimension().height);
         visualizer.updateTable((Graphics2D) g);

@@ -11,11 +11,11 @@ public class Display extends JFrame {
     public static String NAME;
     public static int WIDTH, HEIGHT;
     
-    private Canvas kvCanvas;
     private Dimension tableDimension, kvDimension, scrollDimension;
     private JTextField textField;
     private JScrollPane scrollPane;
     private TablePanel tablePanel;
+    private KVPanel kvPanel;
     
     public Display(Main main, String name, int width, int height) {
         NAME = name;
@@ -53,9 +53,8 @@ public class Display extends JFrame {
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.PAGE_AXIS));
         rightPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-        kvCanvas = new Canvas();
-        kvCanvas.setMinimumSize(kvDimension);
-        kvCanvas.setPreferredSize(kvDimension);
+        kvPanel = new KVPanel(main);
+        kvPanel.setPreferredSize(kvDimension);
         
         textField = new JTextField();
         textField.setVisible(true);
@@ -65,7 +64,7 @@ public class Display extends JFrame {
         
         textField.setFont(new Font("Courir", Font.PLAIN, 20));
         textField.setAlignmentY(50);
-        rightPanel.add(kvCanvas);
+        rightPanel.add(kvPanel);
         //rightPanel.add(Box.createRigidArea(new Dimension(0, 100)));
         rightPanel.add(textField);
         add(rightPanel, BorderLayout.LINE_END);
@@ -79,6 +78,7 @@ public class Display extends JFrame {
         tablePanel.setPreferredSize(tableDimension);
         scrollPane.getVerticalScrollBar().setValue(0);
         tablePanel.revalidate();
+        kvPanel.repaint();
         tablePanel.repaint();
         
     }
@@ -93,10 +93,6 @@ public class Display extends JFrame {
         } else {
             throw new RuntimeException("No Screens Found");
         }
-    }
-    
-    public Canvas getKVCanvas() {
-        return kvCanvas;
     }
     
     public JTextField getTextField() {

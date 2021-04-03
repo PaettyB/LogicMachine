@@ -1,24 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6acd6e2-d43d-47b0-8a2b-7b1dd34e5ca0" name="Default Changelist" comment="Scrollbar Attempt 4 success">
+    <list default="true" id="e6acd6e2-d43d-47b0-8a2b-7b1dd34e5ca0" name="Default Changelist" comment="CleanUp">
+      <change afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/KVPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/control/KeyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/control/KeyManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/control/MouseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/control/MouseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/control/ScrollListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/Literal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/Literal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/Operator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/UnOp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/UnOp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/operators/And.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/operators/And.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/operators/Gdw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/operators/Gdw.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/operators/Imp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/operators/Imp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/operators/Or.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/operators/Or.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/operators/Xor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/operators/Xor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/truthTable/KVDiagramm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/truthTable/KVDiagramm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/truthTable/TruthTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/truthTable/TruthTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/TablePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/TablePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Visualizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Display.java" afterDir="false" />
     </list>
     <list id="1199ee51-86ae-409a-884b-497b18404339" name="First Commit" comment="First Commit">
       <changelist_data name="Patrick Barclay" email="patrick.d.barclay@gmail.com" date="1616580804000" />
@@ -188,7 +176,9 @@
       <workItem from="1617198103579" duration="5022000" />
       <workItem from="1617307326501" duration="7690000" />
       <workItem from="1617354043972" duration="1498000" />
-      <workItem from="1617360158498" duration="4442000" />
+      <workItem from="1617360158498" duration="4770000" />
+      <workItem from="1617365175093" duration="80000" />
+      <workItem from="1617438757836" duration="698000" />
     </task>
     <task id="LOCAL-00001" summary="Added Selectable Operators with Updating TruthTable and KVDiagram">
       <created>1616590613852</created>
@@ -239,7 +229,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617364210551</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="CleanUp">
+      <created>1617364665242</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1617364665242</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,7 +262,8 @@
     <MESSAGE value="Scrollbar Attempt 2" />
     <MESSAGE value="Scrollbar Attempt 3" />
     <MESSAGE value="Scrollbar Attempt 4 success" />
-    <option name="LAST_COMMIT_MESSAGE" value="Scrollbar Attempt 4 success" />
+    <MESSAGE value="CleanUp" />
+    <option name="LAST_COMMIT_MESSAGE" value="CleanUp" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
