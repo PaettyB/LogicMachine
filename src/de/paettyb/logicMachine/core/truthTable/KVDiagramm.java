@@ -1,5 +1,6 @@
 package de.paettyb.logicMachine.core.truthTable;
 
+import de.paettyb.logicMachine.Main;
 import de.paettyb.logicMachine.display.Visualizer;
 
 import java.awt.*;
@@ -20,46 +21,65 @@ public class KVDiagramm {
     
     
     public void draw(Graphics2D g) {
-        g.setColor(Color.BLACK);
         FontMetrics fm = g.getFontMetrics();
         
         int[][] indices = {};
         if (literals.length == 1) {
+            g.setColor(Main.LIGHT_BLUE);
+            g.fillRect(pos.x, pos.y, size, size);
+
+            g.setColor(Color.BLACK);
             g.drawRect(pos.x, pos.y, size, size);
             g.drawRect(pos.x, pos.y, size * 2, size);
-            
+
+            g.setColor(Main.LIGHT_COLOR);
             g.drawString(literals[0], pos.x + size * 1.25f, pos.y - Visualizer.PADDING);
             
             
             indices = new int[][]{{0}, {1}};
             
         } else if (literals.length == 2) {
+            g.setColor(Main.LIGHT_BLUE);
+            g.fillRect(pos.x, pos.y, size * 2, size * 2);
+
+            g.setColor(Color.BLACK);
             g.drawRect(pos.x, pos.y, size * 2, size * 2);
             g.drawLine(pos.x + size, pos.y, pos.x + size, pos.y + size * 2);
             g.drawLine(pos.x, pos.y + size, pos.x + size * 2, pos.y + size);
-            
+
+            g.setColor(Main.LIGHT_COLOR);
             g.drawString(literals[0], pos.x + size * 1.25f, pos.y - Visualizer.PADDING);
             g.drawString(literals[1], pos.x - fm.stringWidth(literals[1]) - Visualizer.PADDING, (pos.y + size + fm.getHeight()));
             
             indices = new int[][]{{0, 1}, {2, 3}};
         } else if (literals.length == 3) {
+            g.setColor(Main.LIGHT_BLUE);
+            g.fillRect(pos.x, pos.y, size * 4, size * 2);
+
+            g.setColor(Color.BLACK);
             g.drawRect(pos.x, pos.y, size * 4, size * 2);
             g.drawRect(pos.x + size, pos.y, size * 2, size * 2);
             g.drawLine(pos.x + size * 2, pos.y, pos.x + size * 2, pos.y + size * 2);
             g.drawLine(pos.x, pos.y + size, pos.x + size * 4, pos.y + size);
-            
+
+            g.setColor(Main.LIGHT_COLOR);
             g.drawString(literals[0], pos.x + size * 2 - fm.stringWidth(literals[0]) * 0.5f, pos.y - Visualizer.PADDING);
             g.drawString(literals[1], pos.x - fm.stringWidth(literals[1]) - Visualizer.PADDING, (pos.y + size + fm.getHeight()));
             g.drawString(literals[2], pos.x + size * 3 - fm.stringWidth(literals[0]) * 0.5f, pos.y + size * 2 + fm.getAscent());
             
             indices = new int[][]{{0, 2}, {4, 6}, {5, 7}, {1, 3}};
         } else if (literals.length == 4) {
+            g.setColor(Main.LIGHT_BLUE);
+            g.fillRect(pos.x, pos.y, size * 4, size * 4);
+
+            g.setColor(Color.BLACK);
             g.drawRect(pos.x, pos.y, size * 4, size * 4);
             g.drawRect(pos.x + size, pos.y, size * 2, size * 4);
             g.drawRect(pos.x, pos.y + size, size * 4, size * 2);
             g.drawLine(pos.x + size * 2, pos.y, pos.x + size * 2, pos.y + size * 4);
             g.drawLine(pos.x, pos.y + size * 2, pos.x + size * 4, pos.y + size * 2);
-            
+
+            g.setColor(Main.LIGHT_COLOR);
             g.drawString(literals[0], pos.x + size * 2 - fm.stringWidth(literals[0]) * 0.5f, pos.y - Visualizer.PADDING);
             g.drawString(literals[1], pos.x - fm.stringWidth(literals[1]) - Visualizer.PADDING, (pos.y + size * 2 + fm.getAscent() * 0.5f));
             g.drawString(literals[2], pos.x + size * 3 - fm.stringWidth(literals[0]) * 0.5f, pos.y + size * 4 + fm.getAscent());
@@ -68,7 +88,7 @@ public class KVDiagramm {
             indices = new int[][]{{0, 4, 5, 1}, {8, 12, 13, 9}, {10, 14, 15, 11}, {2, 6, 7, 3}};
         }
         
-        g.setColor(Color.GREEN);
+        g.setColor(Main.ACCENT_COLOR);
         for (int i = 0; i < indices.length; i++) {
             for (int j = 0; j < indices[i].length; j++) {
                 boolean val = values[indices[i][j]];

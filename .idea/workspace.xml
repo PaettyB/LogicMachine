@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6acd6e2-d43d-47b0-8a2b-7b1dd34e5ca0" name="Default Changelist" comment="CleanUp">
-      <change afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/KVPanel.java" afterDir="false" />
+    <list default="true" id="e6acd6e2-d43d-47b0-8a2b-7b1dd34e5ca0" name="Default Changelist" comment="Revert to working version">
+      <change afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/control/MouseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/control/MouseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/truthTable/KVDiagramm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/core/truthTable/KVDiagramm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Display.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/paettyb/logicMachine/display/Visualizer.java" afterDir="false" />
     </list>
     <list id="1199ee51-86ae-409a-884b-497b18404339" name="First Commit" comment="First Commit">
       <changelist_data name="Patrick Barclay" email="patrick.d.barclay@gmail.com" date="1616580804000" />
@@ -35,6 +39,12 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="1pfbnCA35hD4fPx370OGuZwpfbR" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
@@ -95,21 +105,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="restartRequiresConfirmation" value="false" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RunManager" selected="Application.Main">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="de.paettyb.logicMachine.Main" />
       <module name="LogicMachine" />
@@ -129,17 +146,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -179,6 +185,8 @@
       <workItem from="1617360158498" duration="4770000" />
       <workItem from="1617365175093" duration="80000" />
       <workItem from="1617438757836" duration="698000" />
+      <workItem from="1708258828202" duration="1261000" />
+      <workItem from="1708355348954" duration="2852000" />
     </task>
     <task id="LOCAL-00001" summary="Added Selectable Operators with Updating TruthTable and KVDiagram">
       <created>1616590613852</created>
@@ -252,7 +260,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Selectable Operators with Updating TruthTable and KVDiagram" />

@@ -52,22 +52,22 @@ public class Display extends JFrame {
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.PAGE_AXIS));
         rightPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        rightPanel.setBackground(Main.BACKGROUND_COLOR);
         
         kvPanel = new KVPanel(main);
         kvPanel.setPreferredSize(kvDimension);
-        
         textField = new JTextField();
         textField.setVisible(true);
         textField.setForeground(Color.BLACK);
         textField.setPreferredSize(new Dimension(500, 50));
         textField.setMaximumSize(new Dimension(500, 50));
-        
         textField.setFont(new Font("Courir", Font.PLAIN, 20));
-        textField.setAlignmentY(50);
+        textField.setBackground(Main.LIGHT_BLUE);
+
         rightPanel.add(kvPanel);
-        //rightPanel.add(Box.createRigidArea(new Dimension(0, 100)));
         rightPanel.add(textField);
-        add(rightPanel, BorderLayout.LINE_END);
+        rightPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        add(rightPanel, BorderLayout.CENTER);
         pack();
         setVisible(true);
         textField.requestFocus();

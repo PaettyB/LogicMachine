@@ -21,7 +21,12 @@ public class Main {
     private boolean running = false;
     
     private Visualizer visualizer;
-    
+
+    public static Color BACKGROUND_COLOR = new Color(0x15356D);
+    public static Color LIGHT_BLUE = new Color(0xCDE6F5);
+    public static Color LIGHT_COLOR = new Color(0xFFFFFA);
+    public static Color ACCENT_COLOR = new Color(0xFF9F1C);
+
     public Main(String name, int width, int height) {
         Klausel k = Parser.parseString("A and B");
         visualizer = new Visualizer(k);
@@ -36,7 +41,7 @@ public class Main {
         if (k == null) {
             display.getTextField().setBorder(BorderFactory.createLineBorder(new Color(255, 77, 77), 3));
         } else {
-            display.getTextField().setBorder(BorderFactory.createLineBorder(new Color(21, 118, 0), 3));
+            display.getTextField().setBorder(BorderFactory.createLineBorder(new Color(35, 210, 0), 3));
         }
         visualizer.recalculateValues(k);
         display.setTableDimension(new Dimension(display.getTableDimension().width, visualizer.getNewCanvasHeight()));
@@ -45,7 +50,7 @@ public class Main {
     
     public synchronized void renderKV(Graphics g) {
         g.clearRect(0, 0, display.getKvDimension().width, display.getKvDimension().height);
-        g.setColor(Color.WHITE);
+        g.setColor(BACKGROUND_COLOR);
         g.fillRect(0, 0, Display.WIDTH, Display.HEIGHT);
         visualizer.updateKV((Graphics2D) g);
     }
@@ -53,7 +58,7 @@ public class Main {
     public synchronized void renderTable(Graphics g) {
         g.clearRect(0, 0, Display.WIDTH, Display.HEIGHT);
         //g.clearRect(0, 0, display.getTableDimension().width, display.getTableDimension().height);
-        g.setColor(Color.lightGray);
+        g.setColor(BACKGROUND_COLOR);
         g.fillRect(0, 0, display.getTableDimension().width, display.getTableDimension().height);
         visualizer.updateTable((Graphics2D) g);
     }

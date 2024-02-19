@@ -1,5 +1,6 @@
 package de.paettyb.logicMachine.display;
 
+import de.paettyb.logicMachine.Main;
 import de.paettyb.logicMachine.core.Klausel;
 import de.paettyb.logicMachine.core.truthTable.KVDiagramm;
 import de.paettyb.logicMachine.core.truthTable.TruthTable;
@@ -47,7 +48,7 @@ public class Visualizer {
         g.setFont(new Font("Courir", Font.BOLD, FONT_SIZE));
         FontMetrics fm = g.getFontMetrics();
         
-        g.setColor(Color.black);
+        g.setColor(Main.LIGHT_COLOR);
         
         String[] literals = klausel.getLiterals();
         for (int i = 0; i < literals.length; i++) {
@@ -65,7 +66,7 @@ public class Visualizer {
         }
         
         //---HIGHLIGHT---
-        g.setColor(Color.CYAN);
+        g.setColor(Main.ACCENT_COLOR);
         
         if (highlightedIndex >= 0) {
             g.fillRect(highlightedX, tableOrigin.y - PADDING - fm.getAscent(), fm.charWidth(str.charAt(highlightedIndex)), fm.getHeight());
@@ -77,7 +78,7 @@ public class Visualizer {
                 highlightedX = tableOrigin.x + PADDING;
             }
         }
-        g.setColor(Color.black);
+        g.setColor(Main.LIGHT_COLOR);
         int valuesX = (highlightedX == -1) ? tableOrigin.x + PADDING : highlightedX;
         for (int i = 0; i < values.length; i++) {
             
